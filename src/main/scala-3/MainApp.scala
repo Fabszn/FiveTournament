@@ -1,6 +1,9 @@
 import zio.*
+import zio.http.*
 
 object MainApp extends ZIOAppDefault {
 
-    override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = ZIO.logInfo("Hello Wordl")
+  override def run =
+    Server.serve(services.httpServer.app).provide(Server.default)
+
 }
